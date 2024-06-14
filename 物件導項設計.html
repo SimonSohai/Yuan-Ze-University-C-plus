@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解構元與拷貝建構元</title>
+	<style type="text/css">
+		:root{
+    --hoverColor: rgb(239, 56, 126);
+}
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#menu_control{
+			position: absolute;
+			z-index: -2;
+			opacity: 0;
+		}
+		.header{
+			position: sticky;
+        		top: 0px;
+			height: 50px;
+		}
+		img{
+			height: auto;
+          	max-width: 100%;
+              border-radius: 1rem;
+		}
+		.logo{
+			width: 60px;
+			height: 40px;
+			margin-left: 10px;
+		}
+		.log a{
+			display: block;
+			height: 40px;
+		}
+		.logo img{
+			display: block;
+		}
+		.menu_btn{
+			width: 40px;
+			height: 40px;
+			background-color:#000 ;
+			display: block;
+			position: absolute;
+			top: 5px;
+			right: 10px;
+			border-radius: 0.5rem;
+		}
+		.menu_btn span{
+			opacity: 0;
+			width: 1px;
+			height: 1px;
+			display: block;
+			overflow: hidden;
+		}
+		.menu_btn::before{
+			content: '';
+			position: absolute;
+			height: 2px;
+			left: 2px;
+			width: 36px;
+			background-color: #ccc;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			box-shadow: 0px 8px 0px #ccc,
+						0px -8px 0px #ccc;
+		}
+		nav{
+			width: 40%;
+			height: 274px;
+			background-color: rgba(237, 148, 148, 0.941);
+			position: absolute;
+			top: 50px;
+			right: -100%;
+			transition: .8s;
+			border-radius: 0.5rem;
+		}
+		nav a:hover {
+        background-color: white;
+        color: rgba(237, 148, 148, 0.941);
+        }
+		nav a{
+			display: block;
+			text-decoration: none;
+			color:white ;
+			padding: 10px 20px;
+			border-bottom: 1px solid white;
+            background-color: palevioletred;
+			border-radius: 0.5rem;
+			border: 2px solid var(--hoverColor);
+		}
+		#menu_control:checked ~ .header nav{
+			right: 0;
+		}
+		@media screen and (min-width:768px){
+			.menu_btn{display: none;}
+			body { 
+            width: 30%;
+            margin: 0 auto;}
+        main {
+            height: auto;
+          	max-width: 100%;
+        }
+			.header{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			nav{
+				position: relative;
+				right: 0;
+				display: flex;
+				width: auto;
+				height: auto;
+				top: 0;
+				background-color: transparent;
+			}
+			nav a{
+				border-bottom: none;
+			}
+		}
+		body {
+            width: 100%; 	
+            margin: 0 auto;
+        }	
+        header {
+            display:flex;justify-content: center;align-items: center;
+            width: 100%;
+            height: 80px;	  
+            		
+        }	
+        main {
+            width: 49%;
+            height: 400px;
+            float: left;	
+        }
+        aside {
+            width: 49%;
+            height: 400px;		
+            float: right;	
+        }
+		#background{
+			width: 100%;
+			height: 150%;
+		}
+		.A{
+			width: 100%;
+			min-width: 600px;
+			max-width: 960px;
+			margin: 0 auto;
+			min-height: 100vh;
+			text-align: center;
+			font-weight: bold;
+			justify-content: center;
+			flex-direction: row;
+			align-content: center;
+			flex-wrap: wrap;
+		}
+		.B{
+			width: 100%;
+			min-width: 600px;
+			max-width: 960px;
+			margin: 0 auto;
+		}
+        .C{
+			width: 100%;
+			min-width: 600px;
+			max-width: 960px;
+			margin: 0 auto;
+            background-color: #ccc;
+            border-radius: 0.5rem;
+		}
+	</style>
+</head>
+<body id="background">
+
+<div class="B">
+	<header><h1 style="color: white;">作品成果</h1></header>
+	<input type="checkbox" name="" id="menu_control">
+
+	<div class="header">
+		<h1 class="logo">
+			<a href="https://simonsohai.github.io/Yuan-Ze-University/%E4%BD%9C%E5%93%81%E6%88%90%E6%9E%9C%E8%88%87%E5%80%8B%E4%BA%BA%E5%AD%97%E4%BB%8B.html">
+                <img  style="width: 45px;height: 45px;" src="https://i.imgur.com/tCLFr5w.png"></a>
+		</h1>
+		<label for="menu_control" class="menu_btn">
+			<span>選單</span>
+		</label>
+		<nav>
+            <a href="https://simonsohai.github.io/Tamkang-University-book-review/%E6%9B%B8%E5%AF%A9%E6%9F%A5%E9%96%B1.html" >書審</a>
+            <a href="https://simonsohai.github.io/Tamkang-University-myself/%E8%87%AA%E6%88%91%E4%BB%8B%E7%B4%B9.html">個人介紹</a>
+            <a href="https://simonsohai.github.io/Tamkang-University-learning/%E8%87%AA%E5%AD%B8%E7%B6%B2%E7%AB%99.html">討論與自學網站</a>
+            <a href="https://simonsohai.github.io/Tamkang-University-01/%E8%AD%89%E7%85%A7.html">證照</a>
+            <a href="https://drive.google.com/file/d/1phBzw7RRp3PUlyhSIqLSb5JGA9CThrzB/view?usp=sharing">專題製作</a>
+            <a href="https://simonsohai.github.io/Tamkang-University-phone-num/%E8%81%AF%E7%B5%A1%E8%B3%87%E8%A8%8A.html">聯絡資訊</a>
+            </nav>
+	</div>
+    <div class="C">
+    <h3>撰寫者：郭子綸</h3>
+    <h1>解構元與拷貝建構元</h1>
+    <img src="https://i.imgur.com/Owj1P8a.png">
+
+    <div>
+    <h2>這個程式先定義了一個名為 CWin 的視窗類別，並在裡面宣告了一些變數。然後，定義一個拷貝的建構元，用來初始化物件。接下來，定義一個解構元，用來釋放物件所佔用的記憶體空間。最後顯示物件的屬性。讓我學習到如何在 C++ 中建立和使用類別，以及如何管理記憶體。</h2><br>
+    <hr><br>
+    <h3>程式碼</h3>
+
+    #include <iostream><br>
+    #include <cstdlib><br>
+        
+    using namespace std;<br>
+        
+    class CWin      //定義視窗類別<br>
+    {<br>
+    private:<br>
+    <blockquote>char id,*title;         //宣告title為指向字元陣列的指標<br>
+        int width, height;</blockquote>
+    public:
+        <blockquote>CWin(char i, int w, int h,char* text=(char *)"Default window") :id(i), width(w), height(h)<br>
+        {<br>
+            title = new char[strlen(text) + 1];<br>
+            strcpy(title, text);                  //將text指向的字串拷貝到title陣列裡<br>
+            cout << "建構元被呼叫了....." << endl;<br>
+        }<br>
+        CWin(const CWin& win)                //定義拷貝建構元<br>
+        {<br>
+            cout << "拷貝建構員呼叫了...." << endl;<br>
+            id = win.id;                      //拷貝資料成員<br>
+            width = win.width;<br>
+            height = win.height;<br>
+            title = new char[strlen(win.title) + 1]; //配置記憶空間<br>
+            strcpy(title, win.title);<br>
+        }<br>
+        ~CWin()                                    //解構元的原型<br>
+        {<br>
+            cout << "解構原被呼叫了 ，Win" << this->id << "被銷毀了..." << endl;<br>
+            delete[] title;                  //釋放title所指向的記憶空間<br>
+            system("pause");<br>
+        }<br>
+        void show_member(void)            //顯示id與title成員<br>
+        {<br>
+            cout << "Windows " << id << ":" << title << endl;<br>
+            cout << "Width=" << width << ",Height=" << height << endl;<br>
+        }</blockquote>
+    };<br>
+    int main()<br>
+    {<br>
+        <blockquote>CWin win1('A', 50, 40,(char *)"Main Window");   //建立win1物件<br>
+        CWin win2('B', 40, 50);<br>
+        CWin win3('C', 60, 70);<br>
+        CWin win4('D', 90, 40);<br>
+        CWin win5(win1);            //呼叫拷貝建構元<br>
+        cout << "sizeof(win1)=" << sizeof(win1) << endl;<br>
+        cout << "sizeof(win2)=" << sizeof(win2) << endl;<br>
+        win1.show_member();<br>
+        win2.show_member();<br>
+        win5.show_member();<br>
+        system("pause");<br>
+        return 0;</blockquote>
+    }                   
+</div>
+<hr>
+    <h1>基本陣列操作與數據處理</h1>
+    <img src="https://i.postimg.cc/LXfhDSkj/image.png">
+    <img src="https://i.postimg.cc/NM4FS4V0/image.png">
+
+    <div>
+    <h2>計算陣列大小，找出陣列中的最大和最小值，讓使用者輸入分數並計算平均值。程式還處理和顯示了二維和三維陣列的數據，並使用函數來顯示學生成績和計算平均成績。這讓我了解如何使用C++來操作和處理各種數據。</h2><br>
+    <hr><br>
+    <h3>程式碼</h3>
+
+#include <iostream><br>
+#include <cstdlib><br>
+using namespace std;<br>
+
+// 定義常數<br>
+#define MAX 5<br>
+#define SIZE 5<br>
+
+// 函數宣告<br>
+void show(int[]);<br>
+double average(int[]);<br>
+
+int main()<br>
+{<br>
+    // 定義長整型陣列<br>
+    long long score[6];<br>
+    cout << "sizeof(score[1]=" << sizeof(score[1]) << endl; // 顯示陣列元素的大小<br>
+    cout << "sizeof(score)" << sizeof(score) << endl; // 顯示整個陣列的大小<br>
+
+    // 定義並初始化整型陣列<br>
+    int A[] = { 48,70,30,17,62 };<br>
+    int i, min = A[0], max = A[0];<br>
+    int length = sizeof(A) / sizeof(int); // 計算陣列長度<br>
+
+    cout << "Elements in array A are";<br>
+    // 迴圈遍歷陣列元素<br>
+    for (i = 0; i < length; i++)<br>
+    {<br>
+        cout << A[i] << " "; // 顯示元素<br>
+        if (A[i] > max) // 找最大值<br>
+            max = A[i];<br>
+        if (A[i] < min) // 找最小值<br>
+            min = A[i];<br>
+    }<br>
+    // 顯示最大值和最小值<br>
+    cout << endl << "Maximum is " << max;<br>
+    cout << endl << "Minimum is " << min << endl;<br>
+
+    // 定義一個新的整型陣列<br>
+    int score1[MAX];<br>
+    int ii = 0, num;<br>
+    float sum = 0.0f;<br>
+    cout << "Enter -1 stopping input" << endl;<br>
+    // 迴圈輸入成績，直到輸入-1或達到最大空間<br>
+    do<br>
+    {<br>
+        if (ii == MAX)<br>
+        {<br>
+            cout << "No more space!!" << endl;<br>
+            ii++;<br>
+            break;<br>
+        }<br>
+        cout << "Input score:";<br>
+        cin >> score1[ii];<br>
+    } while (score1[ii++] >= 0);<br>
+
+    num = ii - 1; // 計算有效的輸入數<br>
+    for (ii = 0; ii < num; ii++) // 計算總和<br>
+        sum += score1[ii];<br>
+    cout << "Average of all is" << sum / num << endl; // 顯示平均值<br>
+
+    // 定義2x4的整型陣列並初始化<br>
+    int i1, j1, sum1 = 0;<br>
+    int sale[2][4] = { {30,35,26,32},{33,34,30,29} };<br>
+    // 迴圈遍歷陣列並計算總和<br>
+    for (i1 = 0; i1 < 2; i1++)<br>
+    {<br>
+        cout << "業務員" << (i1 + 1) << "的業績分別為 ";<br>
+        for (j1 = 0; j1 < 4; j1++)<br>
+        {<br>
+            cout << sale[i1][j1] << " ";<br>
+            sum1 += sale[i1][j1];<br>
+        }<br>
+        cout << endl;<br>
+    }<br>
+    cout << "本年度總銷售量為:" << sum1 << "輛車" << endl;<br>
+
+    // 定義3D整型陣列並初始化
+    int AA[2][4][3] = { {{21,32,65},{78,94,76},{79,44,65},{89,54,73}},{{32,56,89},{43,23,32},{32,56,78},{94,78,45}} };<br>
+    int i2, j2, k2, max2 = AA[0][0][0];<br>
+    // 迴圈遍歷3D陣列並找出最大值<br>
+    for (i2 = 0; i2 < 2; i2++)<br>
+        for (j2 = 0; j2 < 4; j2++)<br>
+            for (k2 = 0; k2 < 3; k2++)<br>
+                if (max2 < AA[i2][j2][k2])<br>
+                    max2 = AA[i2][j2][k2];<br>
+    cout << "max=" << max2 << endl; // 顯示最大值<br>
+
+    // 定義並初始化整型陣列<br>
+    int score2[SIZE] = { 89,54,73,95,71 };<br>
+    cout << "學生成績為 ";<br>
+    show(score2); // 顯示成績<br>
+    cout << "平均成績=" << average(score2) << endl; // 顯示平均成績<br>
+
+    system("pause");<br>
+}<br>
+
+// 顯示陣列元素的函數<br>
+void show(int a[])<br>
+{<br>
+    for (int i = 0; i < SIZE; i++)<br>
+        cout << a[i] << " ";<br>
+    cout << endl;<br>
+    return;<br>
+}<br>
+
+// 計算陣列平均值的函數<br>
+double average(int a[])<br>
+{<br>
+    double sum = 0;<br>
+    for (int i = 0; i < SIZE; i++)<br>
+        sum += a[i];<br>
+    return (sum / SIZE);<br>
+}                
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+        <script>
+VANTA.GLOBE({
+  el: "#background",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0xfcfcfc,
+  backgroundColor: 0x449393
+})
+        </script>
+</body>
+</html>
